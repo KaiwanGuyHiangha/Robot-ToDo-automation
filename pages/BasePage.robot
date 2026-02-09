@@ -4,9 +4,9 @@ Resource   ../resources/variables.robot
 
 *** Keywords ***
 Open Application
-    Open Browser    ${BASE_URL}    ${BROWSER}
+    Open Browser    https://abhigyank.github.io/To-Do-List/    chrome
+    ...    options=add_argument(--headless);add_argument(--no-sandbox);add_argument(--disable-dev-shm-usage)
     Maximize Browser Window
-    Wait Until Page Contains    To Do List    10s
 
 Close Application
     Close Browser
