@@ -1,0 +1,13 @@
+# Robot Framework
+output.xml
+log.html
+report.html
+
+# Python
+__pycache__/
+*.pyc
+
+# OS / IDE
+.vscode/
+.idea/
+.DS_Store
