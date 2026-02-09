@@ -4,11 +4,11 @@
 
 ## 📋 สิ่งที่ต้องเตรียม (Prerequisites)
 - **Python 3.10 ขึ้นไป**
-- **Google Chrome** (ติดตั้งที่: `C:\Program Files\Google\Chrome\Application\chrome.exe`)
+- **Google Chrome** (ติดตั้งที่ตำแหน่งมาตรฐาน: `C:\Program Files\Google\Chrome\Application\chrome.exe`)
 
-## 🛠 วิธีการติดตั้ง (Setup Guide)
+## 🚀 วิธีการรันด่วน (One-Step Run)
 
-1. **Clone โปรเจกต์ลงเครื่อง:**
-   ```powershell
-   git clone https://github.com
-   cd Robot-ToDo-automation
+หากคุณเพิ่ง Clone โปรเจกต์มาครั้งแรก สามารถก๊อปปี้คำสั่งด้านล่างนี้ไปวางใน **PowerShell** เพื่อเตรียมระบบและรันเทสทันที:
+
+```powershell
+python -m venv venv; Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process; .\venv\Scripts\Activate.ps1; pip install -r requirements.txt; robot -d results tests/todo_test.robot
