@@ -4,9 +4,14 @@ Resource   ../resources/variables.robot
 
 *** Keywords ***
 Open Application
-    Open Browser    https://abhigyank.github.io/To-Do-List/    chrome
-    ...    options=add_argument(--headless);add_argument(--no-sandbox);add_argument(--disable-dev-shm-usage)
+    ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+    Call Method    ${options}    add_argument    --headless=new
+    Call Method    ${options}    add_argument    --no-sandbox
+    Call Method    ${options}    add_argument    --disable-dev-shm-usage
+
+    Open Browser    https://abhigyank.github.io/To-Do-List/    chrome    options=${options}
     Maximize Browser Window
+
 
 Close Application
     Close Browser
