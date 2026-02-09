@@ -7,22 +7,22 @@ Library    Collections
 ${BASE_URL}    https://abhigyank.github.io/To-Do-List/
 
 *** Keywords ***
-Get Driver Path
-    ${path}=    Evaluate    sys.modules['webdriver_manager.chrome'].ChromeDriverManager().install()    sys, webdriver_manager.chrome
-    Log To Console    \nDriver path is: ${path}
-    RETURN    ${path}
-
 Open Application
-    ${options}=    Set Variable    add_argument("--headless=new"); add_argument("--no-sandbox")
-    Open Browser    https://www.google.com    browser=chrome    options=${options}
-
-
-
-    Create Webdriver    Chrome    options=${options}
-    Go To    https://www.google.com
-
-    Open Browser    ${BASE_URL}    chrome    options=${options}
+    ${driver_path}=    Evaluate    sys.modules['webdriver_manager.chrome'].ChromeDriverManager().install()    sys, webdriver_manager.chrome
+    ${service}=    Evaluate    sys.modules['selenium.webdriver.chrome.service'].Service(executable_path=r'${driver_path}')    sys, selenium.webdriver.chrome.service
+    
+    ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+    ${options.binary_location}=    Set Variable    C:/Program Files/Google/Chrome/Application/chrome.exe
+    
+    Call Method    ${options}    add_argument    --headless\=new
+    Call Method    ${options}    add_argument    --no-sandbox
+    Call Method    ${options}    add_argument    --disable-dev-shm-usage
+    
+    Create Webdriver    Chrome    service=${service}    options=${options}
+    
+    Go To    ${BASE_URL}
     Maximize Browser Window
 
 Close Application
     Close Browser
+
